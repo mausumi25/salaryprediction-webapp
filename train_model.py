@@ -1,24 +1,27 @@
 import pandas as pd
 
-# Load the dataset
+# Load dataset
 df = pd.read_csv("data/survey_results_public.csv")
 
-# Display first 5 rows
-print("First 5 Rows:")
-print(df.head())
+# Select required columns
+df = df[[
+    "Country",
+    "EdLevel",
+    "YearsCodePro",
+    "Employment",
+    "ConvertedComp"
+]]
 
-# Dataset shape
-print("\nDataset Shape:")
-print(df.shape)
-
-# Column names
-print("\nColumns:")
-print(df.columns)
-
-# Information about dataset
-print("\nDataset Info:")
-print(df.info())
-
-# Missing values
-print("\nMissing Values:")
+print("Missing Values:\n")
 print(df.isnull().sum())
+# Remove rows containing missing values
+df = df.dropna()
+
+print("\nShape after removing missing values:")
+print(df.shape)
+df = df[df["Employment"] == "Employed full-time"]
+
+print("\nShape after filtering full-time employees:")
+print(df.shape)
+print("\nCleaned Dataset:")
+print(df.head())
