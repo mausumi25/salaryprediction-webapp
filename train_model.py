@@ -17,7 +17,13 @@ df = df[
 print("Selected Columns")
 print(df.head())
 
-print("\nShape before cleaning:", df.shape)
+print("\nShape before cleaning:")
+print(df.shape)
 
-print("\nMissing Values")
+print("\nMissing Values:")
 print(df.isnull().sum())
+# Remove rows with missing values
+df = df.dropna()
+
+print("\nShape after removing missing values:")
+print(df.shape)
